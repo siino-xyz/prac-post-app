@@ -8,61 +8,66 @@ import {
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
-const AddPost = () => {
+type PostProps = {
+  id?: string;
+};
+
+type Comment = {
+  postId?: string;
+  title?: string;
+};
+
+const AddComment = ({ id }: PostProps) => {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] =
     useState<boolean>(false);
   const queryClient = useQueryClient();
-  let toastPostID: string;
+  let commentToastId: string;
 
-  //Create a Post
   const { mutate } = useMutation(
-    async (title: string) =>
-      await axios.post("/api/posts/addPost", {
-        title,
-      }),
+    async (data: Comment) =>
+      axios.post("/api/posts/addComment", { data }),
     {
-      onError: (error) => {
-        if (error instanceof AxiosError) {
-          toast.error(error?.response?.data.message, {
-            id: toastPostID,
-          });
-        }
-        setIsDisabled(false);
-      },
       onSuccess: (data) => {
-        toast.success("Post has been made.", {
-          id: toastPostID,
-        });
-        queryClient.invalidateQueries(["posts"]);
         setTitle("");
         setIsDisabled(false);
+        queryClient.invalidateQueries(["detail-post"]);
+        toast.success("Added your comment", {
+          id: commentToastId,
+        });
+      },
+      onError: (error) => {
+        setIsDisabled(false);
+        if (error instanceof AxiosError) {
+          toast.error(error?.response?.data.message, {
+            id: commentToastId,
+          });
+        }
       },
     }
   );
 
-  const submitPost = async (e: React.FormEvent) => {
+  const submitComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    toastPostID = toast.loading("Creating your post", {
-      id: toastPostID,
-    });
     setIsDisabled(true);
-    mutate(title);
+    commentToastId = toast.loading(
+      "Adding your comment",
+      { id: commentToastId }
+    );
+    mutate({ title, postId: id });
   };
 
   return (
-    <form
-      onSubmit={submitPost}
-      className="bg-white my-8 p-8 rounded-md"
-    >
-      <div className="flex flex-col my-4 ">
-        <textarea
+    <form onSubmit={submitComment} className="my-8">
+      <h3>Add a comment</h3>
+      <div className="flex flex-col my-2">
+        <input
+          type="text"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
           name="title"
-          value={title}
-          placeholder="思いついたことを書いてみましょう。"
-          className="p-4 text-lg rounded-md my-2 bg-gray-200"
-        ></textarea>
+          className="p-4 text-lg rounded-md my-2"
+        />
       </div>
       <div className="flex items-center justify-between gap-2">
         <p
@@ -84,4 +89,4 @@ const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default AddComment;
