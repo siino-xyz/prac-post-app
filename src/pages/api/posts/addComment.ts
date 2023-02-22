@@ -38,8 +38,8 @@ export default async function handler(
 
       const result = await prisma.comment.create({
         data: {
-          message: title,
           userId: prismaUser?.id,
+          message: title,
           postId,
         },
       });

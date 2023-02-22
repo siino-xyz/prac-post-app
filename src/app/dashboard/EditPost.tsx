@@ -11,7 +11,7 @@ import Toggle from "./Toggle";
 import toast from "react-hot-toast";
 import Link from "next/link";
 
-type EditProps = {
+export type EditProps = {
   id: string;
   avatar: string;
   name: string;

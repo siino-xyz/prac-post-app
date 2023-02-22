@@ -2,13 +2,24 @@
 import Image from "next/image";
 import Link from "next/link";
 
+export type PostProps = {
+  id: string;
+  avatar: string;
+  name: string;
+  postTitle: string;
+  comments?: {
+    id: string;
+    postId: string;
+    userId: string;
+  }[];
+};
 const Post = ({
   avatar,
   name,
   postTitle,
   id,
   comments,
-}) => {
+}: PostProps) => {
   return (
     <div className="bg-white my-8 p-8 roudned-lg">
       <div className="flex items-center gap-2">
