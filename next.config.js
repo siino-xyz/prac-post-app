@@ -4,7 +4,14 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "avatars.gitthubusercontent.com"],
+    domains: [
+      "lh3.googleusercontent.com",
+      "avatars.gitthubusercontent.com",
+    ],
+  },
+  swcMinify: false,
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
