@@ -19,33 +19,29 @@ export default async function handler(
       authOptions
     );
     if (!session)
-      return res
-        .status(401)
-        .json({
-          message: "Please Sign in to make post.",
-        });
+      return res.status(401).json({
+        message: "Please Sign in to make post.",
+      });
 
     const title: string = req.body.title;
 
     //Get User
     const prismaUser = await prisma.user.findUnique({
-      where: { email: session?.user?.email },
+      where: {
+        email: session?.user?.email?.toString(),
+      },
     });
 
     //Check title
     if (title.length > 300) {
-      return res
-        .status(403)
-        .json({
-          message: "Please write a shorter post.",
-        });
+      return res.status(403).json({
+        message: "Please write a shorter post.",
+      });
     }
     if (title.length === 0) {
-      return res
-        .status(403)
-        .json({
-          message: `Please do not leave this empty.`,
-        });
+      return res.status(403).json({
+        message: `Please do not leave this empty.`,
+      });
     }
     try {
       const result = await prisma.post.create({
