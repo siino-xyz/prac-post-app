@@ -1,7 +1,7 @@
 "use client";
 
-import AddComment from "@/app/components/AddComment";
-import Post from "@/app/components/Post";
+import AddComment from "@/components/AddComment";
+import Post from "@/components/Post";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";

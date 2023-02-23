@@ -1,10 +1,10 @@
 "use client";
 
 import axios from "axios";
-import AddPost from "./components/AddPost";
-import Post from "./components/Post";
+import AddPost from "../components/AddPost";
+import Post from "../components/Post";
 import { useQuery } from "@tanstack/react-query";
-import { PostType } from "types/Posts";
+import { PostType } from "@/types/Posts";
 
 // fetch all posts
 const allPosts = async () => {
@@ -14,7 +14,7 @@ const allPosts = async () => {
       return response.data;
     })
     .catch((error) => {
-      console.error(error);
+      console.log("エラー");
     });
   return response;
 };

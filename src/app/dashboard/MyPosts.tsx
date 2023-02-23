@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { AuthPosts } from "types/AuthPost";
+import { AuthPosts } from "@/types/AuthPost";
 import EditPost from "./EditPost";
 
 const fetchAuthPosts = async () => {
