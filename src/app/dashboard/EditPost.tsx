@@ -17,6 +17,7 @@ export type EditProps = {
   name: string;
   title: string;
   comments?: {
+    createdAt: string;
     id: string;
     postId: string;
     userId: string;

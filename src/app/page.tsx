@@ -1,4 +1,5 @@
 "use client";
+
 import axios from "axios";
 import AddPost from "./components/AddPost";
 import Post from "./components/Post";
@@ -7,14 +8,18 @@ import { PostType } from "types/Posts";
 
 // fetch all posts
 const allPosts = async () => {
-  const response = await axios.get(
-    "/api/posts/getPosts"
-  );
-  console.log("getdata");
-  return response.data;
+  const response = await axios
+    .get("/api/posts/getPosts")
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return response;
 };
 
-export default function Home() {
+const Home = () => {
   const { data, error, isLoading } = useQuery<
     PostType[]
   >({
@@ -38,4 +43,6 @@ export default function Home() {
       ))}
     </main>
   );
-}
+};
+
+export default Home;

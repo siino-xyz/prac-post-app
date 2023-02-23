@@ -25,7 +25,6 @@ const PostDetail = (url: URL) => {
     queryFn: () => fetchDetails(url.params.slug),
   });
   if (isLoading) return "Loading...";
-  console.log(data);
   return (
     <div>
       <Post
@@ -36,7 +35,7 @@ const PostDetail = (url: URL) => {
         comments={data.Comment}
       />
       <AddComment id={data?.id} />
-      {data?.Comment?.map((comment) => (
+      {data?.Comment?.map((comment: any) => (
         <div
           key={comment.id}
           className="my-6 bg-white rounded-md"
