@@ -8,9 +8,9 @@ const Nav = async () => {
   const session = await getServerSession(authOptions);
   return (
     <nav className="flex justify-between item-center py-8">
-      {/* <Link href={"/"}>
+      <Link href={"/"}>
         <h1 className="font-bold text-lg">送信完了</h1>
-      </Link> */}
+      </Link>
       <ul className="flex item-center gap-6">
         {!session?.user && <Login />}
         {session?.user && (
