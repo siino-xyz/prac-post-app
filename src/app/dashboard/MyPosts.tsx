@@ -19,7 +19,7 @@ const MyPosts = () => {
   if (isLoading) return <h1>Posts are Loading...</h1>;
   return (
     <div>
-      {data?.Post?.map((post) => (
+      {/* {data?.Post?.map((post) => (
         <EditPost
           id={post.id}
           key={post.id}
@@ -28,7 +28,7 @@ const MyPosts = () => {
           title={post.title}
           comments={post.Comment}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

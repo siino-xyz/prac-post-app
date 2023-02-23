@@ -28,7 +28,8 @@ export default async function handler(
     });
 
     try {
-      const { title, postId } = req.body.data;
+      const title: string = req.body.data;
+      const postId: string = req.body.data;
 
       if (!title.length) {
         return res.status(401).json({
@@ -38,8 +39,8 @@ export default async function handler(
 
       const result = await prisma.comment.create({
         data: {
-          userId: prismaUser?.id,
           message: title,
+          userId: prismaUser?.id,
           postId,
         },
       });
