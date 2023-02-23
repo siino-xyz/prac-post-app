@@ -7,31 +7,31 @@ import { useQuery } from "@tanstack/react-query";
 import { PostType } from "@/types/Posts";
 
 // fetch all posts
-const allPosts = async () => {
-  const response = await axios
-    .get("/api/posts/getPosts")
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.log("エラー");
-    });
-  return response;
-};
+// const allPosts = async () => {
+//   const response = await axios
+//     .get("/api/posts/getPosts")
+//     .then((response) => {
+//       return response.data;
+//     })
+//     .catch((error) => {
+//       console.log("エラー");
+//     });
+//   return response;
+// };
 
 const Home = () => {
-  const { data, error, isLoading } = useQuery<
-    PostType[]
-  >({
-    queryFn: allPosts,
-    queryKey: ["posts"],
-  });
-  if (error) return error;
-  if (isLoading) return "Loading....";
+  // const { data, error, isLoading } = useQuery<
+  //   PostType[]
+  // >({
+  //   queryFn: allPosts,
+  //   queryKey: ["posts"],
+  // });
+  // if (error) return error;
+  // if (isLoading) return "Loading....";
   return (
     <main>
-      <AddPost />
-      {data?.map((post) => (
+      {/* <AddPost /> */}
+      {/* {data?.map((post) => (
         <Post
           comments={post.Comment}
           key={post.id}
@@ -40,7 +40,7 @@ const Home = () => {
           postTitle={post.title}
           id={post.id}
         />
-      ))}
+      ))} */}
     </main>
   );
 };
