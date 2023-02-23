@@ -5,11 +5,12 @@ import Post from "./components/Post";
 import { useQuery } from "@tanstack/react-query";
 import { PostType } from "types/Posts";
 
-//fetch all posts
+// fetch all posts
 const allPosts = async () => {
   const response = await axios.get(
     "/api/posts/getPosts"
   );
+  console.log("getdata");
   return response.data;
 };
 
